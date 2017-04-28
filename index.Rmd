@@ -25,24 +25,28 @@ opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.retina = 2)
 source("r/helper.R")
 ```
 
+---&twocol
 
-
+***=left
 ### Cook County Hospital, 1996
 
-```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "60%", fig.align='center'}
-knitr::include_graphics(c("images/crowdedemergency.jpg"))
-```
+"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+
+
+***=right
 
 - 250,000 patients per year, Not enough space, Complete chaos
 
-"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "100%", fig.align='center'}
+knitr::include_graphics(c("images/crowdedemergency.jpg"))
+```
 
 
 --- &twocol
 
 *** =left
 
-## Heart attacks (?)
+### Heart attacks (?)
 
 - 30 people a day worried about a heart attack
 - **Coronary care bed** ($2,000 a night + 3 day stay) or **Regular bed**
@@ -52,6 +56,11 @@ knitr::include_graphics(c("images/crowdedemergency.jpg"))
 
 - Electrocardiogram (ECG), Blood pressure, Stethescope, How long? How much? During exercise? History? Cholesterol? Drugs? etc.
 
+
+### Problem
+
+- Doctors make individual, idiosyncratic decisions.
+- Very high false positive rate -> High costs, low space.
 
 *** =right
 
@@ -75,6 +84,7 @@ knitr::include_graphics(c("images/datadiagram.png"))
 - Doctor's intuition
 - Algorithm
     - Logistic Regression
+    - 
 
 ---&twocol
 
@@ -85,13 +95,13 @@ knitr::include_graphics(c("images/datadiagram.png"))
 - A fast and frugal decision tree (FFT) developed by Lee Goldman.
 - Doctor's intuition accuracy: 75-90%
 - Decision tree accuracy: 95%
-- Tree had far fewer false-positives and huge cost savings
-- To this day, the tree is still used at the hospital.
+- Tree had far fewer false-positives and substantial cost savings
 
 ***=right
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
-knitr::include_graphics(c("images/cooktree.png"))
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center'}
+plot(heart.fft, stats = FALSE, main = "Example FFT")
+#knitr::include_graphics(c("images/cooktree.png"))
 ```
 
 
@@ -102,16 +112,17 @@ knitr::include_graphics(c("images/cooktree.png"))
 
 ***=left
 
-#### Descriptive
+#### Definition
+
+- A fast and frugal tree is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
+
+#### Descriptive Uses
 
 - Inference (Gigerenzer & Goldstein, 1996)
 - Judge's bailing decisions (Dhami, 2003)
-- Competition "Tit-for-Tat" (Axelrod, 1984)
-- Social "Imitate the successful" (Boyd & Richerson, 2005)
 
-#### Prescriptive
+#### Prescriptive Uses
 
-- Heart disease (Breiman et al. 1993)
 - Terrorist attacks (Garcia, 2016)
 - Bank failure (Aikman et al., 2014; Neth et al., 2014)
 
@@ -133,6 +144,7 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 |:---------|:----|:-----|
 |     Example|    Regression, Random Forests, Bayes|Fast and Frugal Tree (FFT)|
 |     Information Requirements|    High|Low     |
+| Cost of use | High | Low |
 |     Search|    Comprehensive|Sequential     |
 |     Speed|    Slow|Fast     |
 | Transparency, ease of use| Medium or Low| High|
@@ -200,6 +212,8 @@ library("FFTrees")
 heart.fft <- FFTrees(formula = diagnosis ~.,
                        data = heartdisease)
 ```
+
+## Demo
 
 ---
 

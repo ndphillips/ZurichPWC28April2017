@@ -14,24 +14,28 @@ bibliography : bibliography.bib
 
 
 
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png)
 
+---&twocol
 
-
-
+***=left
 ### Cook County Hospital, 1996
 
-<img src="images/crowdedemergency.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="60%" style="display: block; margin: auto;" />
+"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+
+
+***=right
 
 - 250,000 patients per year, Not enough space, Complete chaos
 
-"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+<img src="images/crowdedemergency.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="100%" style="display: block; margin: auto;" />
 
 
 --- &twocol
 
 *** =left
 
-## Heart attacks (?)
+### Heart attacks (?)
 
 - 30 people a day worried about a heart attack
 - **Coronary care bed** ($2,000 a night + 3 day stay) or **Regular bed**
@@ -41,6 +45,11 @@ bibliography : bibliography.bib
 
 - Electrocardiogram (ECG), Blood pressure, Stethescope, How long? How much? During exercise? History? Cholesterol? Drugs? etc.
 
+
+### Problem
+
+- Doctors make individual, idiosyncratic decisions.
+- Very high false positive rate -> High costs, low space.
 
 *** =right
 
@@ -60,6 +69,7 @@ bibliography : bibliography.bib
 - Doctor's intuition
 - Algorithm
     - Logistic Regression
+    - 
 
 ---&twocol
 
@@ -70,12 +80,11 @@ bibliography : bibliography.bib
 - A fast and frugal decision tree (FFT) developed by Lee Goldman.
 - Doctor's intuition accuracy: 75-90%
 - Decision tree accuracy: 95%
-- Tree had far fewer false-positives and huge cost savings
-- To this day, the tree is still used at the hospital.
+- Tree had far fewer false-positives and substantial cost savings
 
 ***=right
 
-<img src="images/cooktree.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="70%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -85,16 +94,17 @@ bibliography : bibliography.bib
 
 ***=left
 
-#### Descriptive
+#### Definition
+
+- A fast and frugal tree is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
+
+#### Descriptive Uses
 
 - Inference (Gigerenzer & Goldstein, 1996)
 - Judge's bailing decisions (Dhami, 2003)
-- Competition "Tit-for-Tat" (Axelrod, 1984)
-- Social "Imitate the successful" (Boyd & Richerson, 2005)
 
-#### Prescriptive
+#### Prescriptive Uses
 
-- Heart disease (Breiman et al. 1993)
 - Terrorist attacks (Garcia, 2016)
 - Bank failure (Aikman et al., 2014; Neth et al., 2014)
 
@@ -108,15 +118,17 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 
 ---
 
-## Why use a Simple algorithm?
+## Why use a simple algorithm like an FFT?
 
-| | Complex|Simple |
+| | Complex| Simple |
 |:---------|:----|:-----|
 |     Example|    Regression, Random Forests, Bayes|Fast and Frugal Tree (FFT)|
 |     Information Requirements|    High|Low     |
+| Cost of use | High | Low |
 |     Search|    Comprehensive|Sequential     |
 |     Speed|    Slow|Fast     |
 | Transparency, ease of use| Medium or Low| High|
+| Accuracy | High (?) | ? |
 
 ---&twocol
 ## FFTrees
@@ -186,6 +198,8 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
                        data = heartdisease)
 ```
 
+## Demo
+
 ---
 
 
@@ -195,7 +209,7 @@ plot(heart.fft, what = "cues", main = "Heart cues")
 ```
 
 
-<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" />
 
 
 --- 
@@ -206,7 +220,7 @@ plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
 ```
 
 
-<img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" />
 
 --- 
 
@@ -216,7 +230,7 @@ plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
 plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
 ```
 
-<img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" />
 
 
 --- 
@@ -225,7 +239,7 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
 plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), tree = 6)
 ```
 
-<img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" />
 
 
 
@@ -284,7 +298,10 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), t
 mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
 ```
 
-<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
+
+```
+## Error in plot(mushrooms.fft, main = "Mushroom Toxicity"): object 'mushrooms.fft' not found
+```
 
 
 ---
@@ -294,7 +311,7 @@ mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
 breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ```
 
-<img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -304,14 +321,14 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ## Speed and frugality
 
 
-<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 ## Speed and frugality
 
 
-<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -411,7 +428,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 *** =right
 
-<img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="504" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" style="display: block; margin: auto;" />
 
 
 
@@ -434,24 +451,24 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ---
 
-<img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" />
 
 
 ---
 
-<img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" />
 
 
 
