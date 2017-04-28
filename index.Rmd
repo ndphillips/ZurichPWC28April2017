@@ -48,13 +48,13 @@ knitr::include_graphics(c("images/crowdedemergency.jpg"))
 
 ### Heart attacks (?)
 
-- 30 people a day worried about a heart attack
-- **Coronary care bed** ($2,000 a night + 3 day stay) or **Regular bed**
-- Goal: send true heart attacks to the coronary care bed, and true healthy patients to a normal bed.
+- 30 people a day worried about heart attacks
+- **Coronary care bed** ($2K a night + 3 day stay) or **Regular bed**
+- Goal: Send true heart attacks to the coronary care, others to a normal bed.
 
 ### Multiple, uncertain measures
 
-- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? During exercise? History? Cholesterol? Drugs?
+- Electrocardiogram (ECG), Blood pressure, Stethoscope, How long? During exercise? History? Cholesterol? Drugs?
 
 ### Problem
 
@@ -105,13 +105,14 @@ plot(heart.fft, stats = FALSE, main = "Example FFT")
 
 --- &twocol
 
-## Fast and Frugal Trees (FFTs)
+## Decision Trees
 
 ***=left
 
 #### Definition
 
-- A fast and frugal tree is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
+- A decision tree is a set of sequential, heirchical rules for making decisions. 
+- A fast and frugal tree (FFT) is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
 
 #### Descriptive Uses
 
@@ -220,7 +221,9 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ### Prediction model competition
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
+- 100 50/50 cross validation simulations on the heartdisease dataset.
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "95%", fig.align='center', message = FALSE, echo = FALSE}
 knitr::include_graphics(c("images/heartsim.png"))
 ```
 
@@ -415,7 +418,6 @@ segments(x0 = seq(-45, 50, length.out = 10),
        y0 = - circ.fun(seq(-45, 50, length.out = 10), r = 50),
        x1 = 0, y1 = 0, col = gray(1 - cor.vals[11:length(cor.vals)]))
 
-
 points(0, 0, cex = 4, pch = 21, bg = "white", col = "black")
 text(0, 0, labels = "C")
 ```
@@ -425,7 +427,7 @@ text(0, 0, labels = "C")
 
 ### FFTrees Friendly Data
 
-- Few cues with high validity
+- Few cues with high validity, dep errors.
 
 ```{r, echo = FALSE, fig.width = 4, fig.height = 4, out.width = "100%"}
 ## FFTrees Friendly
@@ -472,12 +474,14 @@ text(0, 0, labels = "C")
 ### Next steps for the FFTrees package
 
 1. Incorporate numerical cue costs in algorithm.
-2. Re-write code in C++ for speed.
-3. Quantify changes in data over time.
+2. Re-write FFT growing code in C++ for speed.
+    - Consider simulation based fitting methods.
+3. Quantify changes in data over time given a single tree.
+    - Can notify user when there is an important change in the data.
 
 ***=right
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "50%", fig.align='center', message = FALSE, echo = FALSE, eval = FALSE}
+```{r, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE,  eval = TRUE}
 plot(heart.fft, main = "Heart Disease", decision.names = c("Healthy", "Diseased"))
 ```
 

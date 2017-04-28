@@ -37,13 +37,13 @@ bibliography : bibliography.bib
 
 ### Heart attacks (?)
 
-- 30 people a day worried about a heart attack
-- **Coronary care bed** ($2,000 a night + 3 day stay) or **Regular bed**
-- Goal: send true heart attacks to the coronary care bed, and true healthy patients to a normal bed.
+- 30 people a day worried about heart attacks
+- **Coronary care bed** ($2K a night + 3 day stay) or **Regular bed**
+- Goal: Send true heart attacks to the coronary care, others to a normal bed.
 
 ### Multiple, uncertain measures
 
-- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? During exercise? History? Cholesterol? Drugs?
+- Electrocardiogram (ECG), Blood pressure, Stethoscope, How long? During exercise? History? Cholesterol? Drugs?
 
 ### Problem
 
@@ -205,7 +205,9 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ### Prediction model competition
 
-<img src="images/heartsim.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" style="display: block; margin: auto;" />
+- 100 50/50 cross validation simulations on the heartdisease dataset.
+
+<img src="images/heartsim.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="95%" style="display: block; margin: auto;" />
 
 
 
@@ -320,7 +322,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ### FFTrees Friendly Data
 
-- Few cues with high validity
+- Few cues with high validity, dep errors.
 
 <img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="100%" />
 
@@ -331,12 +333,14 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ### Next steps for the FFTrees package
 
 1. Incorporate numerical cue costs in algorithm.
-2. Re-write code in C++ for speed.
-3. Quantify changes in data over time.
+2. Re-write FFT growing code in C++ for speed.
+    - Consider simulation based fitting methods.
+3. Quantify changes in data over time given a single tree.
+    - Can notify user when there is an important change in the data.
 
 ***=right
 
-
+<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto;" />
 
 
 ---&twocol
