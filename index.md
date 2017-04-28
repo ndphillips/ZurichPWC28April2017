@@ -21,14 +21,17 @@ bibliography : bibliography.bib
 ***=left
 ### Cook County Hospital, 1996
 
-"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+
+<img src="images/crowdedemergency.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="100%" style="display: block; margin: auto;" />
 
 
 ***=right
 
 - 250,000 patients per year, Not enough space, Complete chaos
 
-<img src="images/crowdedemergency.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="100%" style="display: block; margin: auto;" />
+"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+
+
 
 
 --- &twocol
@@ -37,7 +40,6 @@ bibliography : bibliography.bib
 
 ### Heart attacks (?)
 
-- 30 people a day worried about heart attacks
 - **Coronary care bed** ($2K a night + 3 day stay) or **Regular bed**
 - Goal: Send true heart attacks to the coronary care, others to a normal bed.
 
