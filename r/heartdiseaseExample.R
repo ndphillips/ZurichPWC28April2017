@@ -53,26 +53,3 @@ text(heart.rpart)
 plot(heart.fff)
 
 
-
-png(filename = "mydeck/images/heartsim.png", width = 12, height = 7, units = "in", res = 400)
-## Training
-par(mfrow = c(1, 2))
-pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
-                            "FFTrees" = heart.fff$tree.sim$bacc.train, 
-                             "rpart" = heart.fff$cart.sim$bacc.train, 
-                             "lm" = heart.fff$lr.sim$bacc.train, 
-                             "rForest" = heart.fff$rf.sim$bacc.train),
-           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
-           main = "Heartdisease - Fitting", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
-axis(2, at = seq(.5, 1, .1), las = 1)
-
-pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
-                              "FFTrees" = heart.fff$tree.sim$bacc.test, 
-                             "rpart" = heart.fff$cart.sim$bacc.test, 
-                             "lm" = heart.fff$lr.sim$bacc.test, 
-                             "rForest" = heart.fff$rf.sim$bacc.test),
-           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
-           main = "Heartdisease - Prediction", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
-axis(2, at = seq(.5, 1, .1), las = 1)
-
-dev.off()
