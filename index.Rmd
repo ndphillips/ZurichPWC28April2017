@@ -214,50 +214,6 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ## Demo
 
----
-
-```{r, eval = FALSE}
-# Show the cue accuracies
-plot(heart.fft, what = "cues", main = "Heart cues")
-```
-
-
-```{r, echo = FALSE, fig.align = 'center', dpi = 200, out.width = "55%", fig.width = 8, fig.height = 8}
-plot(heart.fft, 
-     what = "cues", 
-     main = "Heart Disease Cues")
-```
-
-
---- 
-
-```{r, eval = FALSE}
-plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
-```
-
-
-```{r, eval = TRUE, fig.align = 'center', echo = FALSE ,message = FALSE, dpi = 200, out.width = "70%", fig.width = 8, fig.height = 7}
-plot(heart.fft, 
-     main = "Heart Disease FFT", 
-     decision.names = c("Low Risk", "High Risk"), stats = FALSE)
-```
-
---- 
-
-
-```{r, eval = TRUE, fig.align = 'center', echo = FALSE ,message = FALSE, dpi = 200, out.width = "65%", fig.width = 8, fig.height = 7, echo = TRUE}
-plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
-```
-
-
---- 
-```{r, eval = TRUE, fig.align = 'center', echo = FALSE ,message = FALSE, dpi = 200, out.width = "65%", fig.width = 8, fig.height = 7, echo = TRUE}
-plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), tree = 6)
-```
-
-
-
-
 
 
 ---
@@ -314,10 +270,12 @@ knitr::include_graphics(c("images/datacollage.png"))
 ---
 
 ```{r, eval = FALSE}
-mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
+mushrooms.fft <- FFTrees(poisonous ~., data = mushrooms)
 ```
 
+
 ```{r, echo = FALSE, out.width = "55%", dpi = 200, fig.width = 8, fig.height = 7, fig.align = 'center'}
+load("data/mushrooms.RData")
 plot(mushrooms.fft, main = "Mushroom Toxicity")
 ```
 

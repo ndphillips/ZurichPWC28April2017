@@ -199,57 +199,13 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ## Demo
 
----
-
-
-```r
-# Show the cue accuracies
-plot(heart.fft, what = "cues", main = "Heart cues")
-```
-
-
-<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" />
-
-
---- 
-
-
-```r
-plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
-```
-
-
-<img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" />
-
---- 
-
-
-
-```r
-plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
-```
-
-<img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" />
-
-
---- 
-
-```r
-plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), tree = 6)
-```
-
-<img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" />
-
-
-
-
 
 
 ---
 
 ### Prediction model competition
 
-<img src="images/heartsim.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="100%" style="display: block; margin: auto;" />
+<img src="images/heartsim.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -267,7 +223,7 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), t
 
 ***=right
 
-<img src="images/traintreestats.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="100%" style="display: block; margin: auto;" />
+<img src="images/traintreestats.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -285,7 +241,7 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), t
 
 ***=right
 
-<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="90%" style="display: block; margin: auto;" />
+<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -294,10 +250,11 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), t
 
 
 ```r
-mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
+mushrooms.fft <- FFTrees(poisonous ~., data = mushrooms)
 ```
 
-<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
+
+<img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="55%" style="display: block; margin: auto;" />
 
 
 ---
@@ -307,7 +264,7 @@ mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
 breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ```
 
-<img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -317,26 +274,26 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ## Speed and frugality
 
 
-<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 ## Speed and frugality
 
 
-<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="60%" style="display: block; margin: auto;" />
 
 
 
 --- .class #id 
 ## Prediction accuracy across 10 dasets
 
-<img src="images/simulationagg_c.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="90%" style="display: block; margin: auto;" />
+<img src="images/simulationagg_c.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="90%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 
-<img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="70%" style="display: block; margin: auto;" />
+<img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -344,7 +301,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ### When should I consider an FFT?
 
-<img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="80%" style="display: block; margin: auto;" />
+<img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -356,7 +313,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 - Many cues, weak validity, ind errors
 
-<img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="100%" />
+<img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="100%" />
 
 
 ***=right
@@ -365,7 +322,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 - Few cues with high validity
 
-<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" />
+<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="100%" />
 
 ---&twocol
 
@@ -393,7 +350,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ***=right
 
-<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="90%" style="display: block; margin: auto;" />
+<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -428,7 +385,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 *** =right
 
-<img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="504" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="504" style="display: block; margin: auto;" />
 
 
 
@@ -440,35 +397,35 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 <br>
 
-<img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" />
+<img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="100%" style="display: block; margin: auto;" />
 
 ***=right
 
 <br>
 
-<img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="95%" style="display: block; margin: auto;" />
+<img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="95%" style="display: block; margin: auto;" />
 
 
 ---
 
-<img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="80%" style="display: block; margin: auto;" />
 
 
 ---
 
-<img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
 
 
 

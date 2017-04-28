@@ -440,62 +440,17 @@ heart.fft &lt;- FFTrees(formula = diagnosis ~.,
 </slide>
 
 <slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h3>Prediction model competition</h3>
+  </hgroup>
   <article data-timings="">
-    <pre><code class="r"># Show the cue accuracies
-plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" /></p>
+    <p><img src="images/heartsim.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="100%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-13" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">plot(heart.fft, main = &quot;Heart Disease FFT&quot;, stats = FALSE)
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-14" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">plot(heart.fft, main = &quot;Heart FFT&quot;, decision.names = c(&quot;Healthy&quot;, &quot;Diseased&quot;))
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-15" style="background:;">
-  <article data-timings="">
-    <pre><code class="r">plot(heart.fft, main = &quot;Heart FFT&quot;, decision.names = c(&quot;Healthy&quot;, &quot;Diseased&quot;), tree = 6)
-</code></pre>
-
-<p><img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-16" style="background:;">
-  <hgroup>
-    <h3>Prediction model competition</h3>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="images/heartsim.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="100%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>Efficiency</h2>
   </hgroup>
@@ -515,14 +470,14 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/traintreestats.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="100%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/traintreestats.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -538,30 +493,30 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/datacollage.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="90%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/datacollage.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="90%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <article data-timings="">
-    <pre><code class="r">mushrooms.fft &lt;- FFTrees(poisonous ~ ., data = mushrooms)
+    <pre><code class="r">mushrooms.fft &lt;- FFTrees(poisonous ~., data = mushrooms)
 </code></pre>
 
-<p><img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <article data-timings="">
     <pre><code class="r">breast.fft &lt;- FFTrees(diagnosis ~ ., data = breastcancer)
 </code></pre>
 
-<p><img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -572,7 +527,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <h2>Speed and frugality</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -583,7 +538,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <h2>Speed and frugality</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="60%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -594,7 +549,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <h2>Prediction accuracy across 10 dasets</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="images/simulationagg_c.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="90%" style="display: block; margin: auto;" /></p>
+    <p><img src="images/simulationagg_c.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="90%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -602,24 +557,24 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 <slide class="class" id="id" style="background:;">
   <article data-timings="">
-    <p><img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="70%" style="display: block; margin: auto;" /></p>
+    <p><img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="70%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h3>When should I consider an FFT?</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -629,7 +584,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 <li>Many cues, weak validity, ind errors</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="100%" /></p>
+<p><img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="100%" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
@@ -639,14 +594,14 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 <li>Few cues with high validity</li>
 </ul>
 
-<p><img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" /></p>
+<p><img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="100%" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -666,7 +621,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h2>Collaborators</h2>
   </hgroup>
@@ -681,7 +636,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/collaborators.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="90%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/collaborators.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="90%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -712,7 +667,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -726,14 +681,14 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="504" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="504" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Complexity vs. Simplicity</h2>
   </hgroup>
@@ -742,54 +697,54 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 <div style='float:left;width:48%;' class='centered'>
   <p><br></p>
 
-<p><img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
   <p><br></p>
 
-<p><img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="95%" style="display: block; margin: auto;" /></p>
+<p><img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="95%" style="display: block; margin: auto;" /></p>
 
 </div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="80%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="80%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="80%" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <article data-timings="">
+    <p><img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="80%" style="display: block; margin: auto;" /></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="" id="slide-32" style="background:;">
   <article data-timings="">
-    <p><img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-33" style="background:;">
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-34" style="background:;">
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-35" style="background:;">
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="80%" style="display: block; margin: auto;" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-36" style="background:;">
-  <article data-timings="">
-    <p><img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -867,13 +822,13 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='NA'>
+        data-slide=12 title='Prediction model competition'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='NA'>
+        data-slide=13 title='Efficiency'>
          13
       </a>
     </li>
@@ -891,25 +846,25 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Prediction model competition'>
+        data-slide=16 title='NA'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Efficiency'>
+        data-slide=17 title='Speed and frugality'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='NA'>
+        data-slide=18 title='Speed and frugality'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='NA'>
+        data-slide=19 title='Prediction accuracy across 10 dasets'>
          19
       </a>
     </li>
@@ -921,31 +876,31 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Speed and frugality'>
+        data-slide=21 title='When should I consider an FFT?'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Speed and frugality'>
+        data-slide=22 title='NA'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Prediction accuracy across 10 dasets'>
+        data-slide=23 title='NA'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='NA'>
+        data-slide=24 title='Collaborators'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='When should I consider an FFT?'>
+        data-slide=25 title='FFTrees'>
          25
       </a>
     </li>
@@ -957,19 +912,19 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='NA'>
+        data-slide=27 title='Complexity vs. Simplicity'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Collaborators'>
+        data-slide=28 title='NA'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='FFTrees'>
+        data-slide=29 title='NA'>
          29
       </a>
     </li>
@@ -981,7 +936,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='Complexity vs. Simplicity'>
+        data-slide=31 title='NA'>
          31
       </a>
     </li>
@@ -989,30 +944,6 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
       <a href="#" target="_self" rel='tooltip' 
         data-slide=32 title='NA'>
          32
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='NA'>
-         33
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='NA'>
-         34
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='NA'>
-         35
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='NA'>
-         36
       </a>
     </li>
   </ul>
