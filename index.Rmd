@@ -54,8 +54,7 @@ knitr::include_graphics(c("images/crowdedemergency.jpg"))
 
 ### Multiple, uncertain measures
 
-- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? How much? During exercise? History? Cholesterol? Drugs? etc.
-
+- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? During exercise? History? Cholesterol? Drugs?
 
 ### Problem
 
@@ -83,8 +82,6 @@ knitr::include_graphics(c("images/datadiagram.png"))
 
 - Doctor's intuition
 - Algorithm
-    - Logistic Regression
-    - 
 
 ---&twocol
 
@@ -155,7 +152,9 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 
 ***=left
 
-- `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
+- Problem: While there are many packages for creating non-frugal decision trees, no such tool exists for fast and frugal trees.
+
+- Solution: `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
 
 <br>
 <div style="text-align:left"><font size="1"> Phillips et al. (under review). FFTrees: An R package to create, visualize, and implement fast and frugal decision trees</font></div>
@@ -423,22 +422,96 @@ knitr::include_graphics(c("images/shouldiuseanfft.png"))
 
 ***=left
 
-### When will FFTres perform worse than regression?
+### FFTrees Unfriendly Data
 
-1. Many cues each with weak validity and independent errors.
+- Many cues, weak validity, ind errors
+
+```{r, echo = FALSE, fig.width = 4, fig.height = 4, out.width = "100%"}
+## Regression Friendly
+plot(1, xlim = c(-60, 60), ylim = c(-60, 60), type = "n", yaxt = "n", 
+     xaxt = "n", xlab = "", ylab = "", main = "FFTrees Unfriendly")
+# abline(h = 0, lty = 1, col = gray(.5, .5))
+# abline(v = 0, lty = 1, col = gray(.5, .5))
+
+circ.fun <- function(x, x.c = 0, y.c = 0, r = 1) {
+  
+  output <- y.c + sqrt(r ^ 2 - (x - x.c) ^ 2)
+
+  return(output)
+    
+}
+
+
+cor.vals <- runif(20, min = .1, max = .3)
+
+points(x = c(seq(-50, 45, length.out = 10), 
+             seq(-45, 50, length.out = 10)),
+       y = c(circ.fun(seq(-50, 45, length.out = 10), r = 50),
+             -circ.fun(seq(-45, 50, length.out = 10), r = 50)), cex = cor.vals * 4)
+
+segments(x0 = seq(-50, 45, length.out = 10), 
+       y0 = circ.fun(seq(-50, 45, length.out = 10), r = 50),
+       x1 = 0, y1 = 0, col = gray(1 - cor.vals[1:10]))
+
+segments(x0 = seq(-45, 50, length.out = 10), 
+       y0 = - circ.fun(seq(-45, 50, length.out = 10), r = 50),
+       x1 = 0, y1 = 0, col = gray(1 - cor.vals[11:length(cor.vals)]))
+
+
+points(0, 0, cex = 4, pch = 21, bg = "white", col = "black")
+text(0, 0, labels = "C")
+```
+
 
 ***=right
 
-### When can FFTrees do better than regression?
+### FFTrees Friendly Data
 
-1. A few cues with high validity
+- Few cues with high validity
 
+```{r, echo = FALSE, fig.width = 4, fig.height = 4, out.width = "100%"}
+## FFTrees Friendly
+plot(1, xlim = c(-60, 60), ylim = c(-60, 60), type = "n", yaxt = "n", 
+     xaxt = "n", xlab = "", ylab = "", main = "FFTrees Friendly")
+# abline(h = 0, lty = 1, col = gray(.5, .5))
+# abline(v = 0, lty = 1, col = gray(.5, .5))
+
+circ.fun <- function(x, x.c = 0, y.c = 0, r = 1) {
+  
+  output <- y.c + sqrt(r ^ 2 - (x - x.c) ^ 2)
+
+  return(output)
+    
+}
+
+
+cor.vals <- c(runif(17, min = 0, max = .3), runif(3, min = .6, max = 1))[sample(20)]
+
+points(x = c(seq(-50, 45, length.out = 10), 
+             seq(-45, 50, length.out = 10)),
+       y = c(circ.fun(seq(-50, 45, length.out = 10), r = 50),
+             -circ.fun(seq(-45, 50, length.out = 10), r = 50)), 
+       cex = cor.vals * 4)
+
+segments(x0 = seq(-50, 45, length.out = 10), 
+       y0 = circ.fun(seq(-50, 45, length.out = 10), r = 50),
+       x1 = 0, y1 = 0, col = gray(1 - cor.vals[1:10]), lwd = cor.vals[1:10] * 3)
+
+segments(x0 = seq(-45, 50, length.out = 10), 
+       y0 = - circ.fun(seq(-45, 50, length.out = 10), r = 50),
+       x1 = 0, y1 = 0, col = gray(1 - cor.vals[11:length(cor.vals)]), 
+       lwd = cor.vals[11:20] * 3)
+
+
+points(0, 0, cex = 4, pch = 21, bg = "white", col = "black")
+text(0, 0, labels = "C")
+```
 
 ---&twocol
 
 ***=left
 
-### Next steps
+### Next steps for the FFTrees package
 
 1. Incorporate numerical cue costs in algorithm.
 2. Re-write code in C++ for speed.
@@ -447,7 +520,7 @@ knitr::include_graphics(c("images/shouldiuseanfft.png"))
 ***=right
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "50%", fig.align='center', message = FALSE, echo = FALSE, eval = FALSE}
-knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
+plot(heart.fft, main = "Heart Disease", decision.names = c("Healthy", "Diseased"))
 ```
 
 
@@ -463,7 +536,7 @@ knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
 ***=right
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
-knitr::include_graphics(c("images/collaboratos.png"))
+knitr::include_graphics(c("images/collaborators.png"))
 ```
 
 

@@ -14,7 +14,7 @@ bibliography : bibliography.bib
 
 
 
-![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png)
+
 
 ---&twocol
 
@@ -43,8 +43,7 @@ bibliography : bibliography.bib
 
 ### Multiple, uncertain measures
 
-- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? How much? During exercise? History? Cholesterol? Drugs? etc.
-
+- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? During exercise? History? Cholesterol? Drugs?
 
 ### Problem
 
@@ -68,8 +67,6 @@ bibliography : bibliography.bib
 
 - Doctor's intuition
 - Algorithm
-    - Logistic Regression
-    - 
 
 ---&twocol
 
@@ -84,7 +81,7 @@ bibliography : bibliography.bib
 
 ***=right
 
-<img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -135,7 +132,9 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 
 ***=left
 
-- `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
+- Problem: While there are many packages for creating non-frugal decision trees, no such tool exists for fast and frugal trees.
+
+- Solution: `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
 
 <br>
 <div style="text-align:left"><font size="1"> Phillips et al. (under review). FFTrees: An R package to create, visualize, and implement fast and frugal decision trees</font></div>
@@ -209,7 +208,7 @@ plot(heart.fft, what = "cues", main = "Heart cues")
 ```
 
 
-<img src="assets/fig/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" />
 
 
 --- 
@@ -220,7 +219,7 @@ plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
 ```
 
 
-<img src="assets/fig/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" />
 
 --- 
 
@@ -230,7 +229,7 @@ plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
 plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
 ```
 
-<img src="assets/fig/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" />
 
 
 --- 
@@ -239,7 +238,7 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
 plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), tree = 6)
 ```
 
-<img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" />
 
 
 
@@ -298,10 +297,7 @@ plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), t
 mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
 ```
 
-
-```
-## Error in plot(mushrooms.fft, main = "Mushroom Toxicity"): object 'mushrooms.fft' not found
-```
+<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" />
 
 
 ---
@@ -311,7 +307,7 @@ mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
 breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ```
 
-<img src="assets/fig/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -321,14 +317,14 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ## Speed and frugality
 
 
-<img src="assets/fig/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 ## Speed and frugality
 
 
-<img src="assets/fig/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" />
 
 
 
@@ -356,22 +352,26 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ***=left
 
-### When will FFTres perform worse than regression?
+### FFTrees Unfriendly Data
 
-1. Many cues each with weak validity and independent errors.
+- Many cues, weak validity, ind errors
+
+<img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="100%" />
+
 
 ***=right
 
-### When can FFTrees do better than regression?
+### FFTrees Friendly Data
 
-1. A few cues with high validity
+- Few cues with high validity
 
+<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" />
 
 ---&twocol
 
 ***=left
 
-### Next steps
+### Next steps for the FFTrees package
 
 1. Incorporate numerical cue costs in algorithm.
 2. Re-write code in C++ for speed.
@@ -393,7 +393,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ***=right
 
-<img src="images/collaboratos.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="90%" style="display: block; margin: auto;" />
+<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -428,7 +428,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 *** =right
 
-<img src="assets/fig/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="504" style="display: block; margin: auto;" />
 
 
 
@@ -440,35 +440,35 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 <br>
 
-<img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="display: block; margin: auto;" />
+<img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" />
 
 ***=right
 
 <br>
 
-<img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="95%" style="display: block; margin: auto;" />
+<img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="95%" style="display: block; margin: auto;" />
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="assets/fig/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" />
 
 
 ---
 
-<img src="assets/fig/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="assets/fig/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="80%" style="display: block; margin: auto;" />
 
 ---
 
-<img src="assets/fig/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="80%" style="display: block; margin: auto;" />
 
 
 

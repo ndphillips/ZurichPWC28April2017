@@ -43,8 +43,7 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
-
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -85,7 +84,7 @@
 <h3>Multiple, uncertain measures</h3>
 
 <ul>
-<li>Electrocardiogram (ECG), Blood pressure, Stethescope, How long? How much? During exercise? History? Cholesterol? Drugs? etc.</li>
+<li>Electrocardiogram (ECG), Blood pressure, Stethescope, How long? During exercise? History? Cholesterol? Drugs?</li>
 </ul>
 
 <h3>Problem</h3>
@@ -119,9 +118,7 @@
 
 <ul>
 <li>Doctor&#39;s intuition</li>
-<li>Algorithm
-
-<h2>- Logistic Regression</h2></li>
+<li>Algorithm</li>
 </ul>
 
   </article>
@@ -144,7 +141,7 @@
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="assets/fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -250,7 +247,8 @@
     
 <div style='float:left;width:48%;' class='centered'>
   <ul>
-<li><code>FFTrees</code> An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.</li>
+<li><p>Problem: While there are many packages for creating non-frugal decision trees, no such tool exists for fast and frugal trees.</p></li>
+<li><p>Solution: <code>FFTrees</code> An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.</p></li>
 </ul>
 
 <p><br></p>
@@ -447,7 +445,7 @@ heart.fft &lt;- FFTrees(formula = diagnosis ~.,
 plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -458,7 +456,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <pre><code class="r">plot(heart.fft, main = &quot;Heart Disease FFT&quot;, stats = FALSE)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="70%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -469,7 +467,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <pre><code class="r">plot(heart.fft, main = &quot;Heart FFT&quot;, decision.names = c(&quot;Healthy&quot;, &quot;Diseased&quot;))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="65%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -480,7 +478,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <pre><code class="r">plot(heart.fft, main = &quot;Heart FFT&quot;, decision.names = c(&quot;Healthy&quot;, &quot;Diseased&quot;), tree = 6)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="65%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -552,8 +550,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <pre><code class="r">mushrooms.fft &lt;- FFTrees(poisonous ~ ., data = mushrooms)
 </code></pre>
 
-<pre><code>## Error in plot(mushrooms.fft, main = &quot;Mushroom Toxicity&quot;): object &#39;mushrooms.fft&#39; not found
-</code></pre>
+<p><img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -564,7 +561,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <pre><code class="r">breast.fft &lt;- FFTrees(diagnosis ~ ., data = breastcancer)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" /></p>
+<p><img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="55%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -575,7 +572,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <h2>Speed and frugality</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="60%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -586,7 +583,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
     <h2>Speed and frugality</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="60%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -626,19 +623,23 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
-  <h3>When will FFTres perform worse than regression?</h3>
+  <h3>FFTrees Unfriendly Data</h3>
 
-<ol>
-<li>Many cues each with weak validity and independent errors.</li>
-</ol>
+<ul>
+<li>Many cues, weak validity, ind errors</li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-29-1.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="100%" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
-  <h3>When can FFTrees do better than regression?</h3>
+  <h3>FFTrees Friendly Data</h3>
 
-<ol>
-<li>A few cues with high validity</li>
-</ol>
+<ul>
+<li>Few cues with high validity</li>
+</ul>
+
+<p><img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="100%" /></p>
 
 </div>
   </article>
@@ -649,7 +650,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
-  <h3>Next steps</h3>
+  <h3>Next steps for the FFTrees package</h3>
 
 <ol>
 <li>Incorporate numerical cue costs in algorithm.</li>
@@ -680,7 +681,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="images/collaboratos.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="90%" style="display: block; margin: auto;" /></p>
+  <p><img src="images/collaborators.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="90%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -725,7 +726,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><img src="assets/fig/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" style="display: block; margin: auto;" /></p>
+  <p><img src="figure/unnamed-chunk-33-1.png" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="504" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -741,13 +742,13 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 <div style='float:left;width:48%;' class='centered'>
   <p><br></p>
 
-<p><img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="100%" style="display: block; margin: auto;" /></p>
 
 </div>
 <div style='float:right;width:48%;'>
   <p><br></p>
 
-<p><img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-33" alt="plot of chunk unnamed-chunk-33" width="95%" style="display: block; margin: auto;" /></p>
+<p><img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="95%" style="display: block; margin: auto;" /></p>
 
 </div>
   </article>
@@ -756,7 +757,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 <slide class="" id="slide-32" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -764,7 +765,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 <slide class="" id="slide-33" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -772,7 +773,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 <slide class="" id="slide-34" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -780,7 +781,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 <slide class="" id="slide-35" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-39-1.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -788,7 +789,7 @@ plot(heart.fft, what = &quot;cues&quot;, main = &quot;Heart cues&quot;)
 
 <slide class="" id="slide-36" style="background:;">
   <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-38-1.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="80%" style="display: block; margin: auto;" /></p>
+    <p><img src="figure/unnamed-chunk-40-1.png" title="plot of chunk unnamed-chunk-40" alt="plot of chunk unnamed-chunk-40" width="80%" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
