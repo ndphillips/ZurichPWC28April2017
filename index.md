@@ -70,22 +70,6 @@ bibliography : bibliography.bib
 - Doctor's intuition
 - Algorithm
 
----&twocol
-
-## Solution: a fast and frugal tree (FFT)
-
-***=left
-
-- A fast and frugal decision tree (FFT) developed by Lee Goldman.
-- Doctor's intuition accuracy: 75-90%
-- Decision tree accuracy: 95%
-- Tree had far fewer false-positives and substantial cost savings
-
-***=right
-
-<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" />
-
-
 
 --- &twocol
 
@@ -95,7 +79,7 @@ bibliography : bibliography.bib
 
 #### Definition
 
-- A decision tree is a set of sequential, heirchical rules for making decisions. 
+- A decision tree is a set of sequential, heirchical, non-compensatory rules.
 - A fast and frugal tree (FFT) is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
 
 #### Descriptive Uses
@@ -111,9 +95,27 @@ bibliography : bibliography.bib
 
 ***=right
 
-<img src="images/nethfft.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="100%" style="display: block; margin: auto;" />
+<img src="images/nethfft.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="100%" style="display: block; margin: auto;" />
 
 Neth et al. (2014). "Homo heuristicus in the financial world".
+
+
+
+---&twocol
+
+## Emergency Room Solution: a fast and frugal tree (FFT)
+
+***=left
+
+- A fast and frugal decision tree (FFT) developed by Lee Goldman.
+- Doctor's intuition accuracy: 75-90%, Decision tree accuracy: 95%
+- Tree had far fewer false-positives and substantial cost savings
+- One of the great successs stories of an algorithm used in practice.
+
+***=right
+
+<img src="images/cooktree.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="70%" style="display: block; margin: auto;" />
+
 
 
 ---
@@ -128,14 +130,14 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 |     Search|    Comprehensive|Sequential     |
 |     Speed|    Slow|Fast     |
 | Transparency, ease of use| Medium or Low| High|
-| Accuracy | High (?) | ? |
+| Accuracy | Depends | Depends |
 
 ---&twocol
 ## FFTrees
 
 ***=left
 
-- Problem: While there are many packages for creating non-frugal decision trees, no such tool exists for fast and frugal trees.
+- Problem: While there are many packages for creating non-frugal decision trees (like `rpart()`), no such tool exists for fast and frugal trees.
 
 - Solution: `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
 
@@ -146,14 +148,7 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 ***=right
 
 
-```r
-# Install FFTrees to R.
-install.packages("FFTrees")
-```
-
-
-
-<img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="80%" style="display: block; margin: auto;" />
+<img src="images/FFTrees_Logo.jpg" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="80%" style="display: block; margin: auto;" />
 
 
 ---
@@ -172,16 +167,6 @@ install.packages("FFTrees")
 
 - Goal: Predict diagnosis as a function of cues.
 - Regression: 6 significant cues (sex, cp, thalach, exang, oldpeak, ca)
-
----
-
-## How trees are built with FFTrees
-
-1. For each cue, calculate a decision threshold that maximizes accuracy *ignoring all other cues*.
-2. Rank order cues by their maximum accuracy.
-3. Select the top N (i.e., 4) most accurate cues
-    - If any lower levels contain less than X\% (e.g., 10\%) of the data, remove them.
-4. Select the exit structure with the highest accuracy.
 
 
 ---
@@ -204,6 +189,24 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 ## Demo
 
 
+---&twocol
+
+***=left
+
+## How trees are built with FFTrees
+
+1. For each cue, calculate a decision threshold that maximizes accuracy *ignoring all other cues*.
+2. Rank order cues by their maximum accuracy.
+3. Select the top N (i.e., 4) most accurate cues
+    - If any lower levels contain less than X\% (e.g., 10\%) of the data, remove them.
+4. Select the exit structure with the highest accuracy.
+
+***=right
+
+<img src="figure/unnamed-chunk-10-1.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" width="504" />
+
+
+
 
 ---
 
@@ -211,7 +214,31 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 - 100 50/50 cross validation simulations on the heartdisease dataset.
 
-<img src="images/heartsim.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="95%" style="display: block; margin: auto;" />
+<img src="images/crossvalidation.jpg" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="70%" style="display: block; margin: auto;" />
+
+
+
+
+---
+
+### Prediction model competition
+
+<img src="figure/unnamed-chunk-12-1.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="95%" style="display: block; margin: auto;" />
+
+
+---
+
+### Prediction model competition
+
+<img src="figure/unnamed-chunk-13-1.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="95%" style="display: block; margin: auto;" />
+
+
+
+---
+
+### Prediction model competition
+
+<img src="figure/unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="95%" style="display: block; margin: auto;" />
 
 
 
@@ -229,8 +256,14 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ***=right
 
-<img src="images/traintreestats.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" width="100%" style="display: block; margin: auto;" />
 
+
+
+| cue| cost | description|values |
+|:------|:---|:----|:-----|
+|     `thal`| $102 | thallium scintigraphy, a nuclear imaging test that measures blood flow|normal (n), fixed defect (fd), reversible defect (rd)     |
+|     `cp`| $1 |    Chest pain type| Typical (ta), atypical (aa), non-anginal pain (np), asymptomatic (a)     |
+|     `ca`| $101 | Number of major vessels colored by flourosopy, an x-ray imaging tool|0, 1, 2 or 3 |
 
 
 ---&twocol
@@ -247,7 +280,7 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 ***=right
 
-<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="90%" style="display: block; margin: auto;" />
+<img src="images/datacollage.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -260,7 +293,7 @@ mushrooms.fft <- FFTrees(poisonous ~., data = mushrooms)
 ```
 
 
-<img src="figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="55%" style="display: block; margin: auto;" />
 
 
 ---
@@ -270,7 +303,7 @@ mushrooms.fft <- FFTrees(poisonous ~., data = mushrooms)
 breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ```
 
-<img src="figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" width="55%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-20-1.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="55%" style="display: block; margin: auto;" />
 
 
 
@@ -280,26 +313,26 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ## Speed and frugality
 
 
-<img src="figure/unnamed-chunk-18-1.png" title="plot of chunk unnamed-chunk-18" alt="plot of chunk unnamed-chunk-18" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-21-1.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="60%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 ## Speed and frugality
 
 
-<img src="figure/unnamed-chunk-19-1.png" title="plot of chunk unnamed-chunk-19" alt="plot of chunk unnamed-chunk-19" width="60%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-22-1.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="60%" style="display: block; margin: auto;" />
 
 
 
 --- .class #id 
 ## Prediction accuracy across 10 dasets
 
-<img src="images/simulationagg_c.png" title="plot of chunk unnamed-chunk-20" alt="plot of chunk unnamed-chunk-20" width="90%" style="display: block; margin: auto;" />
+<img src="images/simulationagg_c.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="90%" style="display: block; margin: auto;" />
 
 
 --- .class #id 
 
-<img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-21" alt="plot of chunk unnamed-chunk-21" width="70%" style="display: block; margin: auto;" />
+<img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -307,7 +340,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ### When should I consider an FFT?
 
-<img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-22" alt="plot of chunk unnamed-chunk-22" width="80%" style="display: block; margin: auto;" />
+<img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="80%" style="display: block; margin: auto;" />
 
 
 
@@ -319,7 +352,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 - Many cues, weak validity, ind errors
 
-<img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="100%" />
+<img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" />
 
 
 ***=right
@@ -328,7 +361,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 - Few cues with high validity, dep errors.
 
-<img src="figure/unnamed-chunk-24-1.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="100%" />
+<img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="100%" />
 
 ---&twocol
 
@@ -344,7 +377,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ***=right
 
-<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-28-1.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="100%" style="display: block; margin: auto;" />
 
 
 ---&twocol
@@ -358,7 +391,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 ***=right
 
-<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="90%" style="display: block; margin: auto;" />
+<img src="images/collaborators.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="90%" style="display: block; margin: auto;" />
 
 
 
@@ -393,7 +426,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 *** =right
 
-<img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="504" style="display: block; margin: auto;" />
+<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="504" style="display: block; margin: auto;" />
 
 
 
@@ -405,27 +438,14 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 <br>
 
-<img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="100%" style="display: block; margin: auto;" />
+<img src="images/complexity.jpg" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="100%" style="display: block; margin: auto;" />
 
 ***=right
 
 <br>
 
-<img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="95%" style="display: block; margin: auto;" />
+<img src="images/decisionsimple.jpg" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="95%" style="display: block; margin: auto;" />
 
-
----
-
-<img src="figure/unnamed-chunk-30-1.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="80%" style="display: block; margin: auto;" />
-
----
-
-<img src="figure/unnamed-chunk-31-1.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="80%" style="display: block; margin: auto;" />
-
-
----
-
-<img src="figure/unnamed-chunk-32-1.png" title="plot of chunk unnamed-chunk-32" alt="plot of chunk unnamed-chunk-32" width="80%" style="display: block; margin: auto;" />
 
 ---
 
@@ -434,6 +454,19 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 ---
 
 <img src="figure/unnamed-chunk-34-1.png" title="plot of chunk unnamed-chunk-34" alt="plot of chunk unnamed-chunk-34" width="80%" style="display: block; margin: auto;" />
+
+
+---
+
+<img src="figure/unnamed-chunk-35-1.png" title="plot of chunk unnamed-chunk-35" alt="plot of chunk unnamed-chunk-35" width="80%" style="display: block; margin: auto;" />
+
+---
+
+<img src="figure/unnamed-chunk-36-1.png" title="plot of chunk unnamed-chunk-36" alt="plot of chunk unnamed-chunk-36" width="80%" style="display: block; margin: auto;" />
+
+---
+
+<img src="figure/unnamed-chunk-37-1.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="80%" style="display: block; margin: auto;" />
 
 
 

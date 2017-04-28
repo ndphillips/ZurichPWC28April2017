@@ -85,25 +85,6 @@ knitr::include_graphics(c("images/datadiagram.png"))
 - Doctor's intuition
 - Algorithm
 
----&twocol
-
-## Solution: a fast and frugal tree (FFT)
-
-***=left
-
-- A fast and frugal decision tree (FFT) developed by Lee Goldman.
-- Doctor's intuition accuracy: 75-90%
-- Decision tree accuracy: 95%
-- Tree had far fewer false-positives and substantial cost savings
-
-***=right
-
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center'}
-plot(heart.fft, stats = FALSE, main = "Example FFT")
-#knitr::include_graphics(c("images/cooktree.png"))
-```
-
-
 
 --- &twocol
 
@@ -113,7 +94,7 @@ plot(heart.fft, stats = FALSE, main = "Example FFT")
 
 #### Definition
 
-- A decision tree is a set of sequential, heirchical rules for making decisions. 
+- A decision tree is a set of sequential, heirchical, non-compensatory rules.
 - A fast and frugal tree (FFT) is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
 
 #### Descriptive Uses
@@ -136,6 +117,27 @@ knitr::include_graphics(c("images/nethfft.png"))
 Neth et al. (2014). "Homo heuristicus in the financial world".
 
 
+
+---&twocol
+
+## Emergency Room Solution: a fast and frugal tree (FFT)
+
+***=left
+
+- A fast and frugal decision tree (FFT) developed by Lee Goldman.
+- Doctor's intuition accuracy: 75-90%, Decision tree accuracy: 95%
+- Tree had far fewer false-positives and substantial cost savings
+- One of the great successs stories of an algorithm used in practice.
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
+#plot(heart.fft, stats = FALSE, main = "Example FFT")
+knitr::include_graphics(c("images/cooktree.png"))
+```
+
+
+
 ---
 
 ## Why use a simple algorithm like an FFT?
@@ -148,14 +150,14 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 |     Search|    Comprehensive|Sequential     |
 |     Speed|    Slow|Fast     |
 | Transparency, ease of use| Medium or Low| High|
-| Accuracy | High (?) | ? |
+| Accuracy | Depends | Depends |
 
 ---&twocol
 ## FFTrees
 
 ***=left
 
-- Problem: While there are many packages for creating non-frugal decision trees, no such tool exists for fast and frugal trees.
+- Problem: While there are many packages for creating non-frugal decision trees (like `rpart()`), no such tool exists for fast and frugal trees.
 
 - Solution: `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
 
@@ -164,12 +166,6 @@ Neth et al. (2014). "Homo heuristicus in the financial world".
 
 
 ***=right
-
-```{r, eval = FALSE}
-# Install FFTrees to R.
-install.packages("FFTrees")
-```
-
 
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', message = FALSE, echo = FALSE}
@@ -188,16 +184,6 @@ knitr::kable(head(heartdisease))
 
 - Goal: Predict diagnosis as a function of cues.
 - Regression: 6 significant cues (sex, cp, thalach, exang, oldpeak, ca)
-
----
-
-## How trees are built with FFTrees
-
-1. For each cue, calculate a decision threshold that maximizes accuracy *ignoring all other cues*.
-2. Rank order cues by their maximum accuracy.
-3. Select the top N (i.e., 4) most accurate cues
-    - If any lower levels contain less than X\% (e.g., 10\%) of the data, remove them.
-4. Select the exit structure with the highest accuracy.
 
 
 ---
@@ -219,6 +205,55 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 ## Demo
 
 
+---&twocol
+
+***=left
+
+## How trees are built with FFTrees
+
+1. For each cue, calculate a decision threshold that maximizes accuracy *ignoring all other cues*.
+2. Rank order cues by their maximum accuracy.
+3. Select the top N (i.e., 4) most accurate cues
+    - If any lower levels contain less than X\% (e.g., 10\%) of the data, remove them.
+4. Select the exit structure with the highest accuracy.
+
+***=right
+
+```{r, echo = FALSE}
+# Age thresholds to test
+ages.to.test <- seq(20, to = 90, by = 5)
+
+# Calculate balanced accuracy for each threshold
+y <- sapply(ages.to.test, FUN = function(x) {
+  
+  decisions <- heartdisease$age > x
+  
+  sens <- mean(decisions[heartdisease$diagnosis == 1] == 1)
+  spec <- mean(decisions[heartdisease$diagnosis == 0] == 0)
+  
+  bacc <- (sens + spec) / 2
+  
+  return(bacc)
+
+})
+
+plot(ages.to.test, y, 
+     type = "b", 
+     xlab = "age threshold", 
+     ylab = "balanced accuracy (bacc)", ylim = c(.5, .7),
+     main = "Finding a threshold for Age")
+
+grid()
+
+text(55, 
+     y[ages.to.test == 55], 
+     labels = paste("age = 55, bacc = ", round(y[ages.to.test == 55], 2)), 
+     pos = 3)
+
+```
+
+
+
 
 ---
 
@@ -226,8 +261,96 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 
 - 100 50/50 cross validation simulations on the heartdisease dataset.
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "95%", fig.align='center', message = FALSE, echo = FALSE}
-knitr::include_graphics(c("images/heartsim.png"))
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center', message = FALSE, echo = FALSE}
+knitr::include_graphics(c("images/crossvalidation.jpg"))
+```
+
+
+
+
+---
+
+### Prediction model competition
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "95%", fig.align='center', message = FALSE, echo = FALSE, fig.width = 12, fig.height = 6}
+library(yarrr)
+par(mfrow = c(1, 2))
+pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
+                            "FFTrees" = heart.fff$tree.sim$bacc.train, 
+                             "rpart" = heart.fff$cart.sim$bacc.train, 
+                             "lm" = heart.fff$lr.sim$bacc.train, 
+                             "rForest" = heart.fff$rf.sim$bacc.train),
+           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
+           main = "Heartdisease - Fitting", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
+axis(2, at = seq(.5, 1, .1), las = 1)
+
+rect(-1000, -1000, 1000, 100, col = "white", border = NA)
+
+pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
+                              "FFTrees" = heart.fff$tree.sim$bacc.test, 
+                             "rpart" = heart.fff$cart.sim$bacc.test, 
+                             "lm" = heart.fff$lr.sim$bacc.test, 
+                             "rForest" = heart.fff$rf.sim$bacc.test),
+           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
+           main = "Heartdisease - Prediction", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
+axis(2, at = seq(.5, 1, .1), las = 1)
+rect(-1000, -1000, 1000, 100, col = "white", border = NA)
+```
+
+
+---
+
+### Prediction model competition
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "95%", fig.align='center', message = FALSE, echo = FALSE, fig.width = 12, fig.height = 6}
+library(yarrr)
+par(mfrow = c(1, 2))
+pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
+                            "FFTrees" = heart.fff$tree.sim$bacc.train, 
+                             "rpart" = heart.fff$cart.sim$bacc.train, 
+                             "lm" = heart.fff$lr.sim$bacc.train, 
+                             "rForest" = heart.fff$rf.sim$bacc.train),
+           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
+           main = "Heartdisease - Fitting", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
+axis(2, at = seq(.5, 1, .1), las = 1)
+
+pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
+                              "FFTrees" = heart.fff$tree.sim$bacc.test, 
+                             "rpart" = heart.fff$cart.sim$bacc.test, 
+                             "lm" = heart.fff$lr.sim$bacc.test, 
+                             "rForest" = heart.fff$rf.sim$bacc.test),
+           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
+           main = "Heartdisease - Prediction", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
+axis(2, at = seq(.5, 1, .1), las = 1)
+rect(-1000, -1000, 1000, 100, col = "white", border = NA)
+```
+
+
+
+---
+
+### Prediction model competition
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "95%", fig.align='center', message = FALSE, echo = FALSE, fig.width = 12, fig.height = 6}
+library(yarrr)
+par(mfrow = c(1, 2))
+pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
+                            "FFTrees" = heart.fff$tree.sim$bacc.train, 
+                             "rpart" = heart.fff$cart.sim$bacc.train, 
+                             "lm" = heart.fff$lr.sim$bacc.train, 
+                             "rForest" = heart.fff$rf.sim$bacc.train),
+           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
+           main = "Heartdisease - Fitting", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
+axis(2, at = seq(.5, 1, .1), las = 1)
+
+pirateplot(data = data.frame("Random" = rnorm(100, mean = .5, sd = .01),
+                              "FFTrees" = heart.fff$tree.sim$bacc.test, 
+                             "rpart" = heart.fff$cart.sim$bacc.test, 
+                             "lm" = heart.fff$lr.sim$bacc.test, 
+                             "rForest" = heart.fff$rf.sim$bacc.test),
+           ylim = c(.5, 1), yaxt = "n", gl = seq(.5, 1, .05),  gl.lwd = c(.75, .25),
+           main = "Heartdisease - Prediction", ylab = "Balanced Accuracy", sortx = "s", xlab = "Model")
+axis(2, at = seq(.5, 1, .1), las = 1)
 ```
 
 
@@ -247,9 +370,15 @@ knitr::include_graphics(c("images/heartsim.png"))
 ***=right
 
 ```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
-knitr::include_graphics(c("images/traintreestats.png"))
+# knitr::include_graphics(c("images/traintreestats.png"))
 ```
 
+
+| cue| cost | description|values |
+|:------|:---|:----|:-----|
+|     `thal`| $102 | thallium scintigraphy, a nuclear imaging test that measures blood flow|normal (n), fixed defect (fd), reversible defect (rd)     |
+|     `cp`| $1 |    Chest pain type| Typical (ta), atypical (aa), non-anginal pain (np), asymptomatic (a)     |
+|     `ca`| $101 | Number of major vessels colored by flourosopy, an x-ray imaging tool|0, 1, 2 or 3 |
 
 
 ---&twocol
