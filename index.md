@@ -24,10 +24,10 @@ bibliography : bibliography.bib
 
 <img src="images/crowdedemergency.jpg" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="100%" style="display: block; margin: auto;" />
 
+- 250,000 patients per year, Not enough space, Complete chaos
 
 ***=right
 
-- 250,000 patients per year, Not enough space, Complete chaos
 
 "As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
 
@@ -170,6 +170,7 @@ install.packages("FFTrees")
 |  41|   0|aa |      130|  204|   0|hypertrophy |     172|     0|     1.4|up    |  0|normal |         0|
 |  56|   1|aa |      120|  236|   0|normal      |     178|     0|     0.8|up    |  0|normal |         0|
 
+- Goal: Predict diagnosis as a function of cues.
 - Regression: 6 significant cues (sex, cp, thalach, exang, oldpeak, ca)
 
 ---
