@@ -336,13 +336,6 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 
 
----
-
-### When should I consider an FFT?
-
-<img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="80%" style="display: block; margin: auto;" />
-
-
 
 ---&twocol
 
@@ -352,7 +345,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 - Many cues, weak validity, ind errors
 
-<img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" />
+<img src="figure/unnamed-chunk-25-1.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="100%" />
 
 
 ***=right
@@ -361,7 +354,15 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 - Few cues with high validity, dep errors.
 
-<img src="figure/unnamed-chunk-27-1.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="100%" />
+<img src="figure/unnamed-chunk-26-1.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="100%" />
+
+
+---
+
+### When should I consider an FFT?
+
+<img src="images/shouldiuseanfft.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="80%" style="display: block; margin: auto;" />
+
 
 ---&twocol
 

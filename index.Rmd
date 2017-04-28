@@ -501,15 +501,6 @@ knitr::include_graphics(c("images/simulationseparate.png"))
 
 
 
----
-
-### When should I consider an FFT?
-
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center'}
-knitr::include_graphics(c("images/shouldiuseanfft.png"))
-```
-
-
 
 ---&twocol
 
@@ -563,6 +554,8 @@ text(0, 0, labels = "C")
 
 ```{r, echo = FALSE, fig.width = 4, fig.height = 4, out.width = "100%"}
 ## FFTrees Friendly
+set.seed(125)
+
 plot(1, xlim = c(-60, 60), ylim = c(-60, 60), type = "n", yaxt = "n", 
      xaxt = "n", xlab = "", ylab = "", main = "FFTrees Friendly")
 # abline(h = 0, lty = 1, col = gray(.5, .5))
@@ -598,6 +591,16 @@ segments(x0 = seq(-45, 50, length.out = 10),
 points(0, 0, cex = 4, pch = 21, bg = "white", col = "black")
 text(0, 0, labels = "C")
 ```
+
+
+---
+
+### When should I consider an FFT?
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center'}
+knitr::include_graphics(c("images/shouldiuseanfft.png"))
+```
+
 
 ---&twocol
 
