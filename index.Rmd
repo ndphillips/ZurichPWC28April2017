@@ -82,8 +82,8 @@ knitr::include_graphics(c("images/datadiagram.png"))
 
 ### Options
 
-- Doctor's intuition
-- Algorithm
+- Doctor's intuition -> Was not working well
+- Algorithm -> A Decision tree
 
 
 --- &twocol
@@ -495,7 +495,7 @@ knitr::include_graphics(c("images/simulationagg_c.png"))
 
 --- .class #id 
 
-```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "67%", fig.align='center'}
 knitr::include_graphics(c("images/simulationseparate.png"))
 ```
 

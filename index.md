@@ -67,8 +67,8 @@ bibliography : bibliography.bib
 
 ### Options
 
-- Doctor's intuition
-- Algorithm
+- Doctor's intuition -> Was not working well
+- Algorithm -> A Decision tree
 
 
 --- &twocol
@@ -332,7 +332,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 --- .class #id 
 
-<img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="70%" style="display: block; margin: auto;" />
+<img src="images/simulationseparate.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="67%" style="display: block; margin: auto;" />
 
 
 
