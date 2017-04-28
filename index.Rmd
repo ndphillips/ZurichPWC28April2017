@@ -510,7 +510,7 @@ knitr::include_graphics(c("images/collaborators.png"))
 
 #### My Links
 
-- This presentation: [https://ndphillips.github.io/UZurich-6April2017/](https://ndphillips.github.io/UZurich-6April2017/)
+- This presentation: [https://ndphillips.github.io/ZurichPWC28April2017](https://ndphillips.github.io/ZurichPWC28April2017)
 - Website: https://ndphillips.github.io
 - Email: Nathaniel.D.Phillips.is@gmail.com
 

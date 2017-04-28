@@ -1,9 +1,11 @@
+# ------------
+# FFTrees Demo with heartdisease data
+# ------------
 
+# Install package
+#install.packages("FFTrees")
 
-# Step A: Install package
-install.packages("FFTrees")
-
-# Step B: Load library
+# Load library
 library(FFTrees)
 
 # Create FFTrees object

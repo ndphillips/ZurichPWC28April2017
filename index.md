@@ -87,13 +87,14 @@ bibliography : bibliography.bib
 
 --- &twocol
 
-## Fast and Frugal Trees (FFTs)
+## Decision Trees
 
 ***=left
 
 #### Definition
 
-- A fast and frugal tree is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
+- A decision tree is a set of sequential, heirchical rules for making decisions. 
+- A fast and frugal tree (FFT) is a decision tree with exactly two branches from each node, where one, or both, of the branches are exit branches (Martignon et al., 2008)
 
 #### Descriptive Uses
 
@@ -365,7 +366,7 @@ breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
 
 #### My Links
 
-- This presentation: [https://ndphillips.github.io/UZurich-6April2017/](https://ndphillips.github.io/UZurich-6April2017/)
+- This presentation: [https://ndphillips.github.io/ZurichPWC28April2017](https://ndphillips.github.io/ZurichPWC28April2017)
 - Website: https://ndphillips.github.io
 - Email: Nathaniel.D.Phillips.is@gmail.com
 
