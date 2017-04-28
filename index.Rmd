@@ -1,0 +1,612 @@
+---
+title       : FFTrees
+subtitle    : Creating, visualizing, and implementing fast and frugal decision trees
+author      : Nathaniel Phillips, University of Basel
+job         : Reading Group, PWC, Zurich
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+bibliography : bibliography.bib
+---
+
+
+
+```{r, echo = FALSE, eval = TRUE, message = FALSE}
+load("data/BaselR_FFTrees.RData")
+load("data/forensictrees.RData")
+load("data/BaselR_FFTrees.RData")
+load("data/forensictrees.RData")
+library(FFTrees)
+library(knitr)
+opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE, fig.retina = 2)
+source("r/helper.R")
+```
+
+
+
+### Cook County Hospital, 1996
+
+```{r, fig.margin = TRUE, echo = FALSE, eval = TRUE, out.width = "60%", fig.align='center'}
+knitr::include_graphics(c("images/crowdedemergency.jpg"))
+```
+
+- 250,000 patients per year, Not enough space, Complete chaos
+
+"As the city’s principal public hospital, Cook County was the place of last resort for the hundreds of thousands of Chicagoans without health insurance. Resources were stretched to the limit. The hospital’s cavernous wards were built for another century. There were no private rooms, and patients were separated by flimsy plywood dividers. There was no cafeteria or private telephone—just a payphone for everyone at the end of the hall. In one possibly apocryphal story, doctors once trained a homeless man to do routine lab tests because there was no one else available." Malcolm Gladwell, Blink.
+
+
+--- &twocol
+
+*** =left
+
+## Heart attacks (?)
+
+- 30 people a day worried about a heart attack
+- **Coronary care bed** ($2,000 a night + 3 day stay) or **Regular bed**
+- Goal: send true heart attacks to the coronary care bed, and true healthy patients to a normal bed.
+
+### Multiple, uncertain measures
+
+- Electrocardiogram (ECG), Blood pressure, Stethescope, How long? How much? During exercise? History? Cholesterol? Drugs? etc.
+
+
+*** =right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center'}
+knitr::include_graphics(c("images/paindecision.png"))
+```
+
+
+---
+
+### Classic prediction problem
+
+- Many cues (aka predictors, features), binary criterion
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center'}
+knitr::include_graphics(c("images/datadiagram.png"))
+```
+
+### Options
+
+- Doctor's intuition
+- Algorithm
+    - Logistic Regression
+
+---&twocol
+
+## Solution: a fast and frugal tree (FFT)
+
+***=left
+
+- A fast and frugal decision tree (FFT) developed by Lee Goldman.
+- Doctor's intuition accuracy: 75-90%
+- Decision tree accuracy: 95%
+- Tree had far fewer false-positives and huge cost savings
+- To this day, the tree is still used at the hospital.
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
+knitr::include_graphics(c("images/cooktree.png"))
+```
+
+
+
+--- &twocol
+
+## Fast and Frugal Trees (FFTs)
+
+***=left
+
+#### Descriptive
+
+- Inference (Gigerenzer & Goldstein, 1996)
+- Judge's bailing decisions (Dhami, 2003)
+- Competition "Tit-for-Tat" (Axelrod, 1984)
+- Social "Imitate the successful" (Boyd & Richerson, 2005)
+
+#### Prescriptive
+
+- Heart disease (Breiman et al. 1993)
+- Terrorist attacks (Garcia, 2016)
+- Bank failure (Aikman et al., 2014; Neth et al., 2014)
+
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
+knitr::include_graphics(c("images/nethfft.png"))
+```
+
+Neth et al. (2014). "Homo heuristicus in the financial world".
+
+
+---
+
+## Why use a simple algorithm like an FFT?
+
+| | Complex| Simple |
+|:---------|:----|:-----|
+|     Example|    Regression, Random Forests, Bayes|Fast and Frugal Tree (FFT)|
+|     Information Requirements|    High|Low     |
+|     Search|    Comprehensive|Sequential     |
+|     Speed|    Slow|Fast     |
+| Transparency, ease of use| Medium or Low| High|
+| Accuracy | High (?) | ? |
+
+---&twocol
+## FFTrees
+
+***=left
+
+- `FFTrees` An easy-to-use R package to create, visualize, and implement fast and frugal decision trees.
+
+<br>
+<div style="text-align:left"><font size="1"> Phillips et al. (under review). FFTrees: An R package to create, visualize, and implement fast and frugal decision trees</font></div>
+
+
+***=right
+
+```{r, eval = FALSE}
+# Install FFTrees to R.
+install.packages("FFTrees")
+```
+
+
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center', message = FALSE, echo = FALSE}
+ knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
+```
+
+
+---
+
+## Heart Disease Data
+
+```{r, echo = FALSE, message = FALSE}
+library(FFTrees)
+knitr::kable(head(heartdisease))
+```
+
+- Regression: 6 significant cues (sex, cp, thalach, exang, oldpeak, ca)
+
+---
+
+## How trees are built with FFTrees
+
+1. For each cue, calculate a decision threshold that maximizes accuracy *ignoring all other cues*.
+2. Rank order cues by their maximum accuracy.
+3. Select the top N (i.e., 4) most accurate cues
+    - If any lower levels contain less than X\% (e.g., 10\%) of the data, remove them.
+4. Select the exit structure with the highest accuracy.
+
+
+---
+
+## 3 Steps to creating FFTs with FFTrees
+
+```{r, eval = FALSE}
+# Step 0: Install FFTrees (v.1.2.0)
+install.packages("FFTrees")
+
+# Step 1: Load the package
+library("FFTrees")
+
+# Step 2: Create an fft decision model with FFTrees
+heart.fft <- FFTrees(formula = diagnosis ~.,
+                       data = heartdisease)
+```
+
+---
+
+```{r, eval = FALSE}
+# Show the cue accuracies
+plot(heart.fft, what = "cues", main = "Heart cues")
+```
+
+
+```{r, echo = FALSE, fig.align = 'center', dpi = 200, out.width = "55%", fig.width = 8, fig.height = 8}
+plot(heart.fft, 
+     what = "cues", 
+     main = "Heart Disease Cues")
+```
+
+
+--- 
+
+```{r, eval = FALSE}
+plot(heart.fft, main = "Heart Disease FFT", stats = FALSE)
+```
+
+
+```{r, eval = TRUE, fig.align = 'center', echo = FALSE ,message = FALSE, dpi = 200, out.width = "70%", fig.width = 8, fig.height = 7}
+plot(heart.fft, 
+     main = "Heart Disease FFT", 
+     decision.names = c("Low Risk", "High Risk"), stats = FALSE)
+```
+
+--- 
+
+
+```{r, eval = TRUE, fig.align = 'center', echo = FALSE ,message = FALSE, dpi = 200, out.width = "65%", fig.width = 8, fig.height = 7, echo = TRUE}
+plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"))
+```
+
+
+--- 
+```{r, eval = TRUE, fig.align = 'center', echo = FALSE ,message = FALSE, dpi = 200, out.width = "65%", fig.width = 8, fig.height = 7, echo = TRUE}
+plot(heart.fft, main = "Heart FFT", decision.names = c("Healthy", "Diseased"), tree = 6)
+```
+
+
+
+
+
+
+---
+
+### Prediction model competition
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
+knitr::include_graphics(c("images/heartsim.png"))
+```
+
+
+
+---&twocol
+## Efficiency
+
+***=left
+
+- FFTs are very cheap to implement
+
+- Heart disease data
+    - Regression: $300
+    - rpart: > $100
+    - Heart disease FFT: $75.91
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align='center', message = FALSE, echo = FALSE}
+knitr::include_graphics(c("images/traintreestats.png"))
+```
+
+
+
+---&twocol
+
+***=left
+
+## Generalizing FFTrees
+
+- The `FFTrees` package can be used with any dataset with a binary criterion.
+- Simulation: 10 diverse datasets taken from the UCI Machine Learning Database.
+- FFTrees vs. regression, Naive Bayes, Random Forests and more
+
+### How well can a simple fast and frugal tree predict data?  
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
+knitr::include_graphics(c("images/datacollage.png"))
+```
+
+
+
+
+---
+
+```{r, eval = FALSE}
+mushrooms.fft <- FFTrees(poisonous ~ ., data = mushrooms)
+```
+
+```{r, echo = FALSE, out.width = "55%", dpi = 200, fig.width = 8, fig.height = 7, fig.align = 'center'}
+plot(mushrooms.fft, main = "Mushroom Toxicity")
+```
+
+
+---
+
+```{r, eval = TRUE}
+breast.fft <- FFTrees(diagnosis ~ ., data = breastcancer)
+```
+
+```{r, echo = FALSE, out.width = "55%", dpi = 200, fig.width = 8, fig.height = 7, fig.align = 'center'}
+plot(breast.fft, main = "Breast Cancer")
+```
+
+
+
+
+
+--- .class #id 
+## Speed and frugality
+
+
+```{r, echo = FALSE, fig.align = 'center', fig.width = 6, fig.height = 6, out.width = "60%", dpi = 200}
+
+data.name <- c("arrhythmia", "audiology", "breast", "bridges", "cmc", "credit", "dermatology", "heart", "occupancy", "yeast")
+mcu <- c(1.85, 1.73, 1.39, 2.40, 2.06, 1.9, 1.69, 1.72, 1.92, 1.63)
+pci <- c(.99, .98, .86, .76, .79, .88, .95, .88, .68, .82)
+
+plot(mcu, pci, xlim = c(1, 10), ylim = c(0, 1), xlab = "Mean cues used to make a decision", 
+     ylab = "Percent of information ignored", pch = 21, col = "white", 
+     bg = yarrr::piratepal("basel", trans = .2), cex = 2, main = "FFTrees speed and frugality", xaxt = "n", yaxt = "n", type = "n")
+grid()
+axis(1, 1:10)
+axis(2, seq(0, 1, .2), las = 1)
+
+rect(7, .05, 10, .95, col = yarrr::transparent("white", .2), border = gray(.5, .5))
+
+text(rep(8, length(data.name)), seq(.1, .9, length.out = length(data.name)), labels = data.name, adj = 0)
+points(rep(7.5, length(data.name)), seq(.1, .9, length.out = length(data.name)), pch = 21, col = "white", bg = yarrr::piratepal("basel", trans = .2), cex = 2)
+
+
+
+```
+
+
+--- .class #id 
+## Speed and frugality
+
+
+```{r, echo = FALSE, fig.align = 'center', fig.width = 6, fig.height = 6, out.width = "60%", dpi = 200}
+
+data.name <- c("arrhythmia", "audiology", "breast", "bridges", "cmc", "credit", "dermatology", "heart", "occupancy", "yeast")
+mcu <- c(1.85, 1.73, 1.39, 2.40, 2.06, 1.9, 1.69, 1.72, 1.92, 1.63)
+pci <- c(.99, .98, .86, .76, .79, .88, .95, .88, .68, .82)
+
+plot(mcu, pci, xlim = c(1, 10), ylim = c(0, 1), xlab = "Mean cues used to make a decision", 
+     ylab = "Percent of information ignored", pch = 21, col = "white", 
+     bg = yarrr::piratepal("basel", trans = .2), cex = 2, main = "FFTrees speed and frugality", xaxt = "n", yaxt = "n")
+grid()
+axis(1, 1:10)
+axis(2, seq(0, 1, .2), las = 1)
+
+rect(7, .05, 10, .95, col = yarrr::transparent("white", .2), border = gray(.5, .5))
+
+text(rep(8, length(data.name)), seq(.1, .9, length.out = length(data.name)), labels = data.name, adj = 0)
+points(rep(7.5, length(data.name)), seq(.1, .9, length.out = length(data.name)), pch = 21, col = "white", bg = yarrr::piratepal("basel", trans = .7), cex = 2)
+
+segments(mcu, pci, rep(7.5, length(data.name)), seq(.1, .9, length.out = length(data.name)), col = gray(.5, .2))
+
+
+```
+
+
+
+--- .class #id 
+## Prediction accuracy across 10 dasets
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
+knitr::include_graphics(c("images/simulationagg_c.png"))
+```
+
+
+--- .class #id 
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "70%", fig.align='center'}
+knitr::include_graphics(c("images/simulationseparate.png"))
+```
+
+
+
+---
+
+### When should I consider an FFT?
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "80%", fig.align='center'}
+knitr::include_graphics(c("images/shouldiuseanfft.png"))
+```
+
+
+
+---&twocol
+
+***=left
+
+### When will FFTres perform worse than regression?
+
+1. Many cues each with weak validity and independent errors.
+
+***=right
+
+### When can FFTrees do better than regression?
+
+1. A few cues with high validity
+
+
+---&twocol
+
+***=left
+
+### Next steps
+
+1. Incorporate numerical cue costs in algorithm.
+2. Re-write code in C++ for speed.
+3. Quantify changes in data over time.
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "50%", fig.align='center', message = FALSE, echo = FALSE, eval = FALSE}
+knitr::include_graphics(c("images/FFTrees_Logo.jpg"))
+```
+
+
+---&twocol
+## Collaborators
+
+***=left
+
+- Wolfgang Gaissmaier (University of Konstanz)
+- Hansjoerg Neth  (University of Konstanz)
+- Jan Woike  (MPI for Human Development)
+
+***=right
+
+```{r , fig.margin = TRUE, echo = FALSE, out.width = "90%", fig.align='center'}
+knitr::include_graphics(c("images/collaboratos.png"))
+```
+
+
+
+
+--- .class #id 
+
+### FFTrees
+
+#### My Links
+
+- This presentation: [https://ndphillips.github.io/UZurich-6April2017/](https://ndphillips.github.io/UZurich-6April2017/)
+- Website: https://ndphillips.github.io
+- Email: Nathaniel.D.Phillips.is@gmail.com
+
+#### Packages
+
+- FFTrees: `install.packages("FFTrees")`
+- yarrr: `install.packages("yarrr")`
+
+
+
+--- &twocol
+
+*** =left
+## FFTrees algorithm
+
+1. Calculate a decision threshold `t` for each cue that maximizes the cue’s balanced accuracy `bacc` in training.
+
+2. Rank cues in order of their maximum balanced accuracy -- select the top N cues. 
+
+3. Creates all possible `2^{N−1}` trees with these cues, using all exit structures.
+
+*** =right
+
+```{r echo = FALSE, fig.align = 'center'}
+heartdisease$chol.cut <- cut(heartdisease$chol, breaks = 10)
+
+cutoffs <- seq(min(heartdisease$chol), max(heartdisease$chol), length.out = 10)
+
+vals <- sapply(cutoffs, FUN = function(x) {
+  
+  acc <- mean(heartdisease$diagnosis[heartdisease$chol >= x]) * .5 +
+         mean(heartdisease$diagnosis[heartdisease$chol < x] == FALSE) * .5
+  
+})
+
+
+plot(cutoffs, vals, ylab = "bacc", xlab = "Decision Threshold", main = "Cholestorol", type = "b", ylim = c(0, 1))
+
+text(cutoffs, vals, paste(">", round(cutoffs, 0)), pos = 3)
+
+with(subset(heartdisease, diagnosis == 1), 
+     points(chol, rep(.9, length(chol)) + rnorm(length(chol), mean = 0, sd = .02), pch = 21, bg = yarrr::transparent("red", .6), col = "white"))
+
+with(subset(heartdisease, diagnosis == 0), 
+     points(chol, rep(.8, length(chol)) + rnorm(length(chol), mean = 0, sd = .02), pch = 21, bg = yarrr::transparent("blue", .6), col = "white"))
+
+```
+
+
+
+---&twocol
+
+## Complexity vs. Simplicity
+
+***=left
+
+<br>
+
+```{r, eval = TRUE, echo = FALSE, out.width = "100%", fig.align = 'center'}
+knitr::include_graphics("images/complexity.jpg")
+```
+
+***=right
+
+<br>
+
+```{r, eval = TRUE, echo = FALSE, out.width = "95%", fig.align = 'center'}
+knitr::include_graphics("images/decisionsimple.jpg")
+```
+
+
+---
+
+```{r, dpi = 200, out.width = "80%", fig.width = 6, fig.height = 5, echo = FALSE, fig.align = 'center'}
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity", ylab = "Accuracy", main = "Complexity and Accuracy")
+grid()
+```
+
+---
+
+```{r, dpi = 200, out.width = "80%", fig.width = 6, fig.height = 5, echo = FALSE, fig.align='center'}
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity", ylab = "Accuracy", main = "Complexity and Accuracy")
+grid()
+
+points(90, 80, cex = 2)
+points(0, 0, cex = 2)
+points(50, 50, cex = 2)
+
+
+text(5, 5, labels = "Random")
+text(85, 70, labels = "Random Forests\nSVM")
+text(55, 55, labels = "Regression")
+```
+
+
+---
+
+```{r, dpi = 200, out.width = "80%", fig.width = 6, fig.height = 5, echo = FALSE, fig.align='center'}
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity", ylab = "Accuracy", main = "Complexity and Accuracy")
+grid()
+
+points(90, 80, cex = 2)
+points(0, 0, cex = 2)
+
+text(5, 5, labels = "Random")
+text(85, 70, labels = "Random Forests\nSVM")
+
+# points(rep(20, 5), seq(10, 75, length.out = 5), col = "green", pch = 16)
+
+linear <- function(x) {line.fun(alpha = 1, x = x, x1 = 0, y1 = 0, x2 = 90, y2 = 80)}
+curve(linear, from = 0, to = 90, ylim = c(0, 100), xlim = c(0, 100), add = TRUE)
+```
+
+---
+
+```{r, dpi = 200, out.width = "80%", fig.width = 6, fig.height = 5, echo = FALSE, fig.align='center'}
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity", ylab = "Accuracy", main = "Complexity and Accuracy")
+grid()
+
+points(90, 80, cex = 2)
+text(5, 5, labels = "Random")
+text(85, 70, labels = "Random Forests\nSVM")
+
+slow <- function(x) {line.fun(alpha = .5, x = x, x1 = 0, y1 = 0, x2 = 90, y2 = 80)}
+curve(slow, from = 0, to = 90, ylim = c(0, 100), xlim = c(0, 100), add = TRUE)
+```
+
+---
+
+```{r, dpi = 200, out.width = "80%", fig.width = 6, fig.height = 5, echo = FALSE, fig.align='center'}
+plot(1, xlim = c(0, 100), ylim = c(0, 100), type = "n", 
+     xlab = "Complexity", ylab = "Accuracy", main = "Complexity and Accuracy")
+grid()
+
+points(90, 80, cex = 2)
+text(5, 5, labels = "Random")
+text(85, 70, labels = "Random Forests\nSVM")
+
+fast <- function(x) {line.fun(alpha = .05, x = x, x1 = 0, y1 = 0, x2 = 90, y2 = 80)}
+curve(fast, from = 0, to = 90, ylim = c(0, 100), xlim = c(0, 100), add = TRUE)
+```
+
+
+
