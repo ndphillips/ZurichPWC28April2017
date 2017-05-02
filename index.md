@@ -250,9 +250,8 @@ heart.fft <- FFTrees(formula = diagnosis ~.,
 - FFTs are very cheap to implement
 
 - Heart disease data
-    - Regression: $300
-    - rpart: > $100
-    - Heart disease FFT: $75.91
+    - Regression (all cues): $300
+    - Heart disease FFT: $123.21
 
 ***=right
 

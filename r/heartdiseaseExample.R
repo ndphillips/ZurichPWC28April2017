@@ -9,7 +9,7 @@
 library(FFTrees)
 
 # Create FFTrees object
-heart.fft <- FFTrees(formula = diagnosis ~ .,
+heart.fft <- FFTrees(formula = diagnosis ~ thal + ca + slope,
                      data = heartdisease)
 
 # Print object
@@ -17,7 +17,8 @@ heart.fft
 
 # Show cue accuracies
 plot(heart.fft, 
-     what = "cues", main = "Heart Disease")
+     what = "cues", 
+     main = "Heart Disease")
 
 # Plot best fitting tree (no stats)
 
